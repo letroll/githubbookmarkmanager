@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = '0.9.976'
-//    ext.kotlin_version = '0.1-SNAPSHOT'
+    //    ext.kotlin_version = '0.1-SNAPSHOT'
     repositories {
         mavenCentral()
         maven {
@@ -12,7 +12,7 @@ buildscript {
     }
 }
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 repositories {
@@ -27,17 +27,12 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "fr.letroll.githubbookmarkmanager"
+        applicationId "fr.letroll.kotlinandroidlib"
         minSdkVersion 17
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
     }
     buildTypes {
         release {
@@ -46,6 +41,7 @@ android {
         }
     }
 
+    sourceSets.main.java.srcDirs += 'src/main/kotlin'
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -54,11 +50,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.2'
-    compile 'com.google.android.gms:play-services:6.1.71'
-    compile 'com.squareup.retrofit:retrofit:1.8.0'
-    compile 'com.squareup.okhttp:okhttp:2.1.0'
-    compile 'com.netflix.rxjava:rxjava-android:0.20.7'
-    compile 'com.netflix.rxjava:rxjava-core:0.20.7'
-    compile project(':kotlinandroidlib')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

@@ -14,13 +14,6 @@ abstract class BaseActivity : Activity(){
     //ce qui signifie que contentViewId peut-être seulement lu et est initialisable qu'une fois
     abstract val contentViewId : Int
 
-    fun view<T : View>(id : Int) : T {
-        val view : View? = findViewById(id)
-        if (view == null)
-            throw IllegalArgumentException("Given ID could not be found in current layout!")
-        return view as T
-    }
-
     fun View.show() {
         if(!this.isShown())this.setVisibility(View.VISIBLE)
     }
