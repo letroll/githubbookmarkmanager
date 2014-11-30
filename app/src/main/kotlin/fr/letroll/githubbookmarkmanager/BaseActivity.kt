@@ -14,19 +14,4 @@ abstract class BaseActivity : Activity(){
     //ce qui signifie que contentViewId peut-être seulement lu et est initialisable qu'une fois
     abstract val contentViewId : Int
 
-    fun View.show() {
-        if(!this.isShown())this.setVisibility(View.VISIBLE)
-    }
-
-    fun View.hide() {
-        if(this.isShown())this.setVisibility(View.INVISIBLE)
-    }
-
-    fun View.gone() {
-        if(this.isShown())this.setVisibility(View.GONE)
-    }
-
-    fun TextView.string() : String {
-        return getText()?.toString() ?: ""
-    }
 }
