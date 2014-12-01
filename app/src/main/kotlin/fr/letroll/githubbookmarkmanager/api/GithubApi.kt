@@ -15,6 +15,7 @@ public open class GithubApi {
     public fun getService(): GitHubService {
         val restAdapter: RestAdapter = RestAdapter.Builder()
                 .setEndpoint("https://api.github.com")
+                .setConverter(StringConverter())
                 .build();
 
         val service: GitHubService = restAdapter.create(javaClass<GitHubService>())
