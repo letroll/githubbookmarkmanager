@@ -2,9 +2,12 @@ package fr.letroll.githubbookmarkmanager.api
 
 import retrofit.http.GET
 import retrofit.http.Path
-import fr.letroll.githubbookmarkmanager.api.model.Repo
 import retrofit.http.POST
 import retrofit.http.Query
+
+import fr.letroll.githubbookmarkmanager.api.model.Repo
+import rx.Observable
+import retrofit.Callback
 
 /**
  * Created by letroll on 30/11/14.
@@ -18,7 +21,10 @@ Client Secret
 
 public trait GitHubService{
     [GET("/users/{user}/repos")]
-    fun listRepos([Path("user")] user: String): List<Repo>;
+    fun listRepos([Path("user")] user: String, result: Callback<List<Repo>>)
+
+    [GET("/users/{user}/starred")]
+    fun listStarred([Path("user")] user: String): Observable<List<Repo>>
 
     [POST("/authorizations")]
     fun getAuthorizations( [Query("scopes")] scopes: String,[Query("note")] note: String,
