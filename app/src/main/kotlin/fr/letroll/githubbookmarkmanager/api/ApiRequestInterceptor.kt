@@ -18,7 +18,7 @@ public open class ApiRequestInterceptor(_user: String, _pass: String) : RequestI
             val authorizationValue = encodeCredentialsForBasicAuthorization():String
             requestFacade.addHeader("Authorization", authorizationValue)
             requestFacade.addHeader("Accept", "application/vnd.github.v3+json")
-            requestFacade.addHeader("User-Agent", "Retrofit-Sample-App")
+            requestFacade.addHeader("User-Agent", "letroll")
         }
     }
 

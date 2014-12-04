@@ -26,7 +26,7 @@ public trait GitHubService{
     fun listStarred([Path("user")] user: String, result: Callback<List<Repo>>)
 
     [POST("/authorizations")]
-    fun getAuthorizations( [Query("scopes")] scopes: String,[Query("note")] note: String,
+    fun getAuthorizations([Query("scopes")] scopes: Array<String>, [Query("note")] note: String,
                            [Query("note_url")] note_url: String,[Query("client_id")] client_id: String,
                            [Query("client_secret")] client_secret: String, result: Callback<String>)
 }
