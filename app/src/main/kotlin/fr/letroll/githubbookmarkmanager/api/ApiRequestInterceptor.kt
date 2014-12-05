@@ -21,6 +21,8 @@ public open class ApiRequestInterceptor(_user: String, _pass: String) : RequestI
             requestFacade.addHeader("User-Agent", "letroll")
         }
     }
+    //token :f80cccecba9ba780da4397285c9e89760021a4c2
+    //id:13409598
 
     private fun encodeCredentialsForBasicAuthorization(): String {
         val userAndPassword = user + ":" + pass:String

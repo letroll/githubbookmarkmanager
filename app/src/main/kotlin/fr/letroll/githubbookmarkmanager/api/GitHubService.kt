@@ -2,8 +2,6 @@ package fr.letroll.githubbookmarkmanager.api
 
 import retrofit.http.GET
 import retrofit.http.Path
-import retrofit.http.POST
-import retrofit.http.Query
 
 import fr.letroll.githubbookmarkmanager.api.model.Repo
 import retrofit.Callback
@@ -25,8 +23,11 @@ public trait GitHubService{
     [GET("/users/{user}/starred")]
     fun listStarred([Path("user")] user: String, result: Callback<List<Repo>>)
 
-    [POST("/authorizations")]
-    fun getAuthorizations([Query("scopes")] scopes: Array<String>, [Query("note")] note: String,
-                           [Query("note_url")] note_url: String,[Query("client_id")] client_id: String,
-                           [Query("client_secret")] client_secret: String, result: Callback<String>)
+    //    [POST("/authorizations")]
+    //    fun getAuthorizations([Query("scopes")] scopes: Array<String>, [Query("note")] note: String,
+    //                          [Query("note_url")] note_url: String,[Query("client_id")] client_id: String,
+    //                          [Query("client_secret")] client_secret: String, result: Callback<String>)
+
+    [GET("/authorizations")]
+    fun getAuthorizations(result: Callback<String>)
 }

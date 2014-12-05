@@ -4,7 +4,7 @@ package fr.letroll.githubbookmarkmanager.api.model
  * Created by letroll on 30/11/14.
  */
 
-data class Repo() {
+public data class Repo() {
     public var id: kotlin.Int = -1
     public var name: String = ""
     public var fullName: String = ""

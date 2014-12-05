@@ -64,8 +64,9 @@ open class MainActivity : BaseActivity() {
         email_sign_in_button.setOnClickListener({
 
             val tmp = array("repo"):Array<String>
-            githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
-                    "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
+            //            githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
+            //                    "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
+            githubApi.getService().getAuthorizations(cal)
             //            githubApi.getService().listStarred("letroll", calR)
         })
 
