@@ -5,6 +5,7 @@ import retrofit.http.Path
 
 import fr.letroll.githubbookmarkmanager.api.model.Repo
 import retrofit.Callback
+import fr.letroll.githubbookmarkmanager.api.model.RepoAuthorization
 
 /**
  * Created by letroll on 30/11/14.
@@ -16,7 +17,7 @@ Client Secret
 
  */
 
-public trait GitHubService{
+public trait GitHubService {
     [GET("/users/{user}/repos")]
     fun listRepos([Path("user")] user: String, result: Callback<List<Repo>>)
 
@@ -29,5 +30,5 @@ public trait GitHubService{
     //                          [Query("client_secret")] client_secret: String, result: Callback<String>)
 
     [GET("/authorizations")]
-    fun getAuthorizations(result: Callback<String>)
+    fun getAuthorizations(result: Callback<List<RepoAuthorization>>)
 }
