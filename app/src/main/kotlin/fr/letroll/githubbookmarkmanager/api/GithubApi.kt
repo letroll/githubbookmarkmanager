@@ -29,12 +29,15 @@ public open class GithubApi : Constant() {
 
     public fun getService(): GitHubService? {
         if (getAuthentification() == null) return null
+
         val restAdapter: RestAdapter = RestAdapter.Builder()
                 .setEndpoint(API_URL)
-                .setClient(OkClient(OkHttpClient()))
+                .setClient(InterceptingOkClient(OkHttpClient()))
                 .setRequestInterceptor (getAuthentification())
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
+
+        Log.e("getservice", "token:"+token)
 
         val service: GitHubService = restAdapter.create(javaClass<GitHubService>())
         return service

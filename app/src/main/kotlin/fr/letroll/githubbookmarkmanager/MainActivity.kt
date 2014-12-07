@@ -22,6 +22,7 @@ open class MainActivity : BaseActivity() {
 
 //    var login
 //    var pass: EditText()
+    val githubApi: GithubApi = GithubApi()
 
     val calR = object : Callback<List<Repo>> {
         override fun success(list: List<Repo>?, response: Response?) {
@@ -45,13 +46,13 @@ open class MainActivity : BaseActivity() {
                 toast("string:null")
             } else {
                 for (rep in values) {
-                    //                    if(rep._scopes.size==9) {
-                    //                        loge(rep._token + " " + rep._scopes)
-                    //                        GithubApi().setTokenAuth(rep._token)
-                    //                    }
-                    loge(rep.toString())
+                                        if(rep._scopes!= null && rep._scopes.size>2) {
+                                            loge(rep._token + " " + rep._scopes)
+//                                            githubApi.setTokenAuth(rep._token)
+                                        }
+//                    loge(rep.toString())
                 }
-                toast("string=" + values.elementAt(0)._token)
+//                toast("string=" + values.elementAt(0)._token)
                 loge("data:" + values.elementAt(0).toString())
             }
         }
@@ -68,17 +69,16 @@ open class MainActivity : BaseActivity() {
         super<BaseActivity>.onCreate(savedInstanceState)
         setContentView(contentViewId);
 
-        val githubApi: GithubApi = GithubApi()
         val login = findView<AutoCompleteTextView>(R.id.email).getText().toString()
         val pass = findView<EditText>(R.id.password).getText().toString()
         val email_sign_in_button = findView<Button>(R.id.email_sign_in_button)
         githubApi.setBasicAuth(login, pass)
         email_sign_in_button.setOnClickListener({
             //            val tmp = array("repo"):Array<String>
-            //            githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
-            //                    "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
+//                        githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
+//                                "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
             githubApi.getService()?.getAuthorizations(cal)
-            //            githubApi.getService().listStarred("letroll", calR)
+//                        githubApi.getService()?.listStarred("letroll", calR)
         })
 
 //        val i = Intent(this, javaClass<LoginActivity>())

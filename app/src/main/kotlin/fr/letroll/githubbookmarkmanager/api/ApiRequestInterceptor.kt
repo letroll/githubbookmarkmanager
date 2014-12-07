@@ -13,7 +13,7 @@ public open class ApiRequestInterceptor(_user: String, _pass: String) : RequestI
 
     private var user = _user: String
     private var pass = _pass: String
-    private var token = _user: String
+    private var token = "": String
 
     public override fun intercept(requestFacade: RequestFacade) {
         Log.e("toto", "intercept user:" + user + " pass:" + pass + " token:" + token)
