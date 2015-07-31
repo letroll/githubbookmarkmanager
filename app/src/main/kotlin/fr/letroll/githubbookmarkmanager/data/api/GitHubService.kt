@@ -6,6 +6,9 @@ import retrofit.http.GET
 import retrofit.http.Path
 import rx.Observable
 
+import fr.letroll.githubbookmarkmanager.api.model.Repo
+import retrofit.Callback
+
 /**
  * Created by letroll on 30/11/14.
  *
