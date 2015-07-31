@@ -1,4 +1,4 @@
-package fr.letroll.githubbookmarkmanager.api.model
+package fr.letroll.githubbookmarkmanager.data.model
 
 /**
  * Created by letroll on 30/11/14.

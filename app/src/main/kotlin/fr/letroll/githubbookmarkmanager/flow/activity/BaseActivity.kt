@@ -1,4 +1,4 @@
-package fr.letroll.githubbookmarkmanager
+package fr.letroll.githubbookmarkmanager.flow.activity
 
 import android.app.Activity
 import android.widget.Toast

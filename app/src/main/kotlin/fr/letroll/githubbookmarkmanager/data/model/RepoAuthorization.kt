@@ -1,4 +1,6 @@
-package fr.letroll.githubbookmarkmanager.api.model
+package fr.letroll.githubbookmarkmanager.data.model
+
+import java.util.*
 
 /**
  * Created by jquievreux on 05/12/14.
@@ -21,6 +23,6 @@ public data class RepoAuthorization {
 
     public var updated_at: String = ""
 
-    public var scopes: kotlin.List<String> = kotlin.List<String>
+    public var scopes: List<String> = ArrayList<String>()
 
 }

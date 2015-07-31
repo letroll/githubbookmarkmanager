@@ -1,4 +1,4 @@
-package fr.letroll.githubbookmarkmanager.api
+package fr.letroll.githubbookmarkmanager.data.api
 
 import retrofit.RestAdapter
 import retrofit.client.OkClient
@@ -16,7 +16,7 @@ public open class GithubApi : Constant() {
                 .setClient(OkClient(OkHttpClient()))
                 .setRequestInterceptor (ApiRequestInterceptor("letroll", "soulriver59"))
                 .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
+                .build()
 
         val service: GitHubService = restAdapter.create(javaClass<GitHubService>())
         return service

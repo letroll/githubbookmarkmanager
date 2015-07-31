@@ -1,4 +1,4 @@
-package fr.letroll.githubbookmarkmanager.api;
+package fr.letroll.githubbookmarkmanager.data.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;

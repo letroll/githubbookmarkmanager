@@ -26,6 +26,4 @@ proguard/
 *.log
 
 .idea
-app/app.iml
-GithubBookmarkManager.iml
-githubbookmarkmanager.iml
+*.iml

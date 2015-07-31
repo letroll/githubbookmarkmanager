@@ -1,22 +1,26 @@
-package fr.letroll.githubbookmarkmanager
+package fr.letroll.githubbookmarkmanager.flow.activity
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
-import fr.letroll.githubbookmarkmanager.api.GithubApi
+import fr.letroll.githubbookmarkmanager.R
+import fr.letroll.githubbookmarkmanager.data.api.GitHubService
+import fr.letroll.githubbookmarkmanager.data.api.GithubApi
+import fr.letroll.githubbookmarkmanager.data.model.Repo
 import fr.letroll.kotlinandroidlib.findView
 import retrofit.Callback
-import retrofit.client.Response
 import retrofit.RetrofitError
-import fr.letroll.githubbookmarkmanager.api.model.Repo
+import retrofit.client.Response
+import javax.inject.Inject
+import kotlin.properties.Delegates
 
 /**
  * Created by jquievreux on 26/11/14.
  */
 
 open class MainActivity : BaseActivity() {
-    override val contentViewId: Int=R.layout.activity_login
+    override val contentViewId: Int= R.layout.activity_login
 
 //    var login
 //    var pass: EditText()
@@ -53,9 +57,14 @@ open class MainActivity : BaseActivity() {
         }
     }
 
+    Inject
+    val githubService: GitHubService by Delegates.notNull()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super<BaseActivity>.onCreate(savedInstanceState)
         setContentView(contentViewId);
+
+
 
         val githubApi: GithubApi = GithubApi()
         val login = findView<AutoCompleteTextView>(R.id.email)
@@ -63,7 +72,7 @@ open class MainActivity : BaseActivity() {
         val email_sign_in_button = findView<Button>(R.id.email_sign_in_button)
         email_sign_in_button.setOnClickListener({
 
-            val tmp = array("repo"):Array<String>
+            val tmp = arrayOf("repo"):Array<String>
             //            githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
             //                    "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
             githubApi.getService().getAuthorizations(cal)

@@ -1,19 +1,26 @@
-package fr.letroll.githubbookmarkmanager.api
+package fr.letroll.githubbookmarkmanager.data.api
 
-import retrofit.RequestInterceptor.RequestFacade
 import android.util.Base64
+import fr.letroll.githubbookmarkmanager.data.Storage
 import retrofit.RequestInterceptor
+import retrofit.RequestInterceptor.RequestFacade
 
 /**
  * Created by jquievreux on 04/12/14.
  */
 
-public open class ApiRequestInterceptor(_user: String, _pass: String) : RequestInterceptor {
+public open class ApiRequestInterceptor(_storage: Storage,_user: String, _pass: String) : RequestInterceptor {
 
-    private var user = _user: String
-    private var pass = _pass: String
+    private var user = _user
+    private var pass = _pass
+    private var storage=_storage
 
     public override fun intercept(requestFacade: RequestFacade) {
+        val key: String = storage.getApiKey()
+        if (key != null) {
+            //ajoute aux header la ApiKey en clé bearer
+            requestFacade.addHeader("bearer", key)
+        }
         if (user != null) {
             val authorizationValue = encodeCredentialsForBasicAuthorization():String
             requestFacade.addHeader("Authorization", authorizationValue)
