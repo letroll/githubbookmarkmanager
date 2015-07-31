@@ -1,4 +1,4 @@
-package fr.letroll.githubbookmarkmanager.data.api
+package fr.letroll.githubbookmarkmanager.api
 
 import fr.letroll.githubbookmarkmanager.data.model.Repo
 import retrofit.Callback
@@ -6,7 +6,6 @@ import retrofit.http.GET
 import retrofit.http.Path
 import rx.Observable
 
-import fr.letroll.githubbookmarkmanager.api.model.Repo
 import retrofit.Callback
 
 /**
@@ -20,10 +19,10 @@ Client Secret
 
 public interface GitHubService{
     GET("/users/{user}/repos")
-    fun listRepos(Path("user") user: String):Observable<List<Repo>>
+    fun listRepos(Path("user") user: String): Observable<List<Repo>>
 
     GET("/users/{user}/starred")
-    fun listStarred(Path("user") user: String):Observable<List<Repo>>
+    fun listStarred(Path("user") user: String): Observable<List<Repo>>
 
     //    [POST("/authorizations")]
     //    fun getAuthorizations([Query("scopes")] scopes: Array<String>, [Query("note")] note: String,
@@ -31,5 +30,5 @@ public interface GitHubService{
     //                          [Query("client_secret")] client_secret: String, result: Callback<String>)
 
     GET("/authorizations")
-    fun getAuthorizations():Observable<String>
+    fun getAuthorizations(): Observable<String>
 }

@@ -5,82 +5,47 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import fr.letroll.githubbookmarkmanager.R
-import fr.letroll.githubbookmarkmanager.data.api.GitHubService
-import fr.letroll.githubbookmarkmanager.data.api.GithubApi
-import fr.letroll.githubbookmarkmanager.data.model.Repo
+import fr.letroll.githubbookmarkmanager.api.GithubApi
 import fr.letroll.kotlinandroidlib.findView
-import retrofit.Callback
-import retrofit.RetrofitError
-import retrofit.client.Response
-import javax.inject.Inject
-import kotlin.properties.Delegates
+import rx.functions.Action1
 
 /**
  * Created by jquievreux on 26/11/14.
  */
 
 open class MainActivity : BaseActivity() {
-    override val contentViewId: Int= R.layout.activity_login
-
-//    var login
-//    var pass: EditText()
-
-    val calR = object : Callback<List<Repo>> {
-        override fun success(list: List<Repo>?, response: Response?) {
-            if (list == null) {
-                toast("list:null")
-            } else
-                toast("list=" + list.size())
-        }
-
-        override fun failure(error: RetrofitError?) {
-            if (error == null) {
-                toast("error:null")
-            } else
-                toast("error:" + error.getMessage())
-        }
-    }
-
-    val cal = object : Callback<String> {
-        override fun success(t: String?, response: Response?) {
-            if (t == null) {
-                toast("string:null")
-            } else
-                toast("string=" + t)
-        }
-
-        override fun failure(error: RetrofitError?) {
-            if (error == null) {
-                toast("error:null")
-            } else
-                toast("error:" + error.getMessage())
-        }
-    }
-
-    Inject
-    val githubService: GitHubService by Delegates.notNull()
+    override val contentViewId: Int = R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<BaseActivity>.onCreate(savedInstanceState)
         setContentView(contentViewId);
 
+        val githubApi = GithubApi()
+        val service = githubApi.getService()
 
-
-        val githubApi: GithubApi = GithubApi()
         val login = findView<AutoCompleteTextView>(R.id.email)
         val pass = findView<EditText>(R.id.password)
         val email_sign_in_button = findView<Button>(R.id.email_sign_in_button)
         email_sign_in_button.setOnClickListener({
 
             val tmp = arrayOf("repo"):Array<String>
-            //            githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884",
-            //                    "6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
-            githubApi.getService().getAuthorizations(cal)
-            //            githubApi.getService().listStarred("letroll", calR)
+            //githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884","6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
+            //githubService.getAuthorizations(cal)
+            //githubApi.getService().listStarred("letroll", calR)
+
+            service.getAuthorizations().subscribe(
+                    object : Action1<String> {
+                        override fun call(t: String?) {
+                            toast(t)
+                        }
+                    }, object : Action1<Throwable> {
+                override fun call(t: Throwable?) {
+                    toast(t?.getMessage())
+                }
+
+            })
+
         })
 
-//        val i = Intent(this, javaClass<LoginActivity>())
-//        startActivity(i)
-//        Github github = RtGithub()
     }
 }
