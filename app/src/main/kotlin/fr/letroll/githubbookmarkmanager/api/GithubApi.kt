@@ -1,6 +1,5 @@
 package fr.letroll.githubbookmarkmanager.api
 
-import com.squareup.okhttp.OkHttpClient
 import fr.letroll.githubbookmarkmanager.Constant
 import fr.letroll.kotlinandroidlib.factory.ApiFactory
 import retrofit.RestAdapter
@@ -31,7 +30,7 @@ public open class GithubApi : Constant() {
 
 //        Log.e("getservice", "token:" + token)
 
-        restAdapterBuilder.setClient(InterceptingOkClient(OkHttpClient()))
+        restAdapterBuilder.setClient(InterceptingOkClient())
 
         val service: GitHubService = restAdapterBuilder.build().create(javaClass<GitHubService>())
         return service

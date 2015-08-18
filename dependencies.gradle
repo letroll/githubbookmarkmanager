@@ -3,7 +3,7 @@ ext {
   rxAndroidVersion = '0.25.0'
   rxJavaVersion = '1.0.13'
   rxKotlinVersion = '0.22.12'
-  okhttpVersion = '2.0.0'
+  okhttpVersion = '2.2.0'
   retrofitVersion = '1.9.0'
   play_servicesVersion = '7.5.0'
 

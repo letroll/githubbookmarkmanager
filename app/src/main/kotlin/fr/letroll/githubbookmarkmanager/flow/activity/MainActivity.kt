@@ -1,9 +1,7 @@
 package fr.letroll.githubbookmarkmanager.flow.activity
 
 import android.os.Bundle
-import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.EditText
 import fr.letroll.githubbookmarkmanager.R
 import fr.letroll.githubbookmarkmanager.api.GithubApi
 import fr.letroll.kotlinandroidlib.findView
@@ -23,8 +21,8 @@ open class MainActivity : BaseActivity() {
         val githubApi = GithubApi()
         val service = githubApi.getService()
 
-        val login = findView<AutoCompleteTextView>(R.id.email)
-        val pass = findView<EditText>(R.id.password)
+        //        val login = findView<AutoCompleteTextView>(R.id.email)
+        //        val pass = findView<EditText>(R.id.password)
         val email_sign_in_button = findView<Button>(R.id.email_sign_in_button)
         email_sign_in_button.setOnClickListener({
 

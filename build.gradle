@@ -21,12 +21,12 @@ allprojects {
 }
 
 ext {
-  compileSdkVersion = 22
-  buildToolsVersion = '22.0.1'
+  compileSdkVersion = 23
+  buildToolsVersion = '23'
   minSdkVersion = 16
   versionCode = 1
   versionName = "0.1"
-  targetSdkVersion = 22
+  targetSdkVersion = compileSdkVersion
   minifyEnabled = false
 
   kotlin_version = '0.12.1230'

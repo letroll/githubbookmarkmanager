@@ -1,17 +1,16 @@
 package fr.letroll.githubbookmarkmanager.api
 
-import com.squareup.okhttp.OkHttpClient
-import retrofit.client.OkClient
-import retrofit.client.Response
-import retrofit.client.Header
-import retrofit.client.Request
 import android.util.Log
+import retrofit.client.Header
+import retrofit.client.OkClient
+import retrofit.client.Request
+import retrofit.client.Response
 
 /**
  * Created by letroll on 07/12/14.
  */
 
-open public class InterceptingOkClient(client: OkHttpClient) : OkClient() {
+open public class InterceptingOkClient() : OkClient() {
 
     public override fun execute(request: Request): Response {
         val response: Response = super.execute(request);
