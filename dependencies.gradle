@@ -1,5 +1,5 @@
 ext {
-  googleLibsVersion = '22.2.1'
+  googleLibsVersion = '23.0.0'
   rxAndroidVersion = '0.25.0'
   rxJavaVersion = '1.0.13'
   rxKotlinVersion = '0.22.12'

@@ -1,10 +1,8 @@
 package fr.letroll.githubbookmarkmanager.api
 
-import android.util.Log
 import com.squareup.okhttp.OkHttpClient
 import fr.letroll.githubbookmarkmanager.Constant
-import fr.letroll.githubbookmarkmanager.api.InterceptingOkClient
-import retrofit.RequestInterceptor
+import fr.letroll.kotlinandroidlib.factory.ApiFactory
 import retrofit.RestAdapter
 
 /**
@@ -28,27 +26,15 @@ public open class GithubApi : Constant() {
 //    }
 
     public fun getService(): GitHubService {
-//        if (getAuthentification() == null) return null
-
-        val restAdapter: RestAdapter = RestAdapter.Builder()
-                .setEndpoint(API_URL)
-                .setClient(InterceptingOkClient(OkHttpClient()))
-                .setRequestInterceptor (getAuthentification())
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build()
+        val restAdapterBuilder: RestAdapter.Builder = ApiFactory().getApi(API_URL).setRequestInterceptor (ApiRequestInterceptor(user, pass));
+        //        val restAdapterBuilder: RestAdapter.Builder = ApiFactory().getApi(API_URL).setRequestInterceptor (ApiRequestInterceptor(token, ""));
 
 //        Log.e("getservice", "token:" + token)
 
-        val service: GitHubService = restAdapter.create(javaClass<GitHubService>())
+        restAdapterBuilder.setClient(InterceptingOkClient(OkHttpClient()))
+
+        val service: GitHubService = restAdapterBuilder.build().create(javaClass<GitHubService>())
         return service
     }
 
-    private fun getAuthentification(): RequestInterceptor {
-//        if (!user.equals("") && !pass.equals(""))
-            return ApiRequestInterceptor(user, pass)
-//        else if (!token.equals("")) {
-//            Log.e("toto", "utilisation du token:" + token)
-//            return ApiRequestInterceptor(token, "")
-//        } else return null
-    }
 }

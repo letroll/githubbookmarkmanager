@@ -28,7 +28,7 @@ open class MainActivity : BaseActivity() {
         val email_sign_in_button = findView<Button>(R.id.email_sign_in_button)
         email_sign_in_button.setOnClickListener({
 
-            val tmp = arrayOf("repo"):Array<String>
+            //            val tmp = arrayOf("repo"):Array<String>
             //githubApi.getService().getAuthorizations(tmp, "toto", "http://test.com", "f562e3df7d57256f3884","6e90eafd7e6088af4f58170ef5118c64ea05ff50", cal)
             //githubService.getAuthorizations(cal)
             //githubApi.getService().listStarred("letroll", calR)

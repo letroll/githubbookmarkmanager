@@ -1,12 +1,10 @@
 package fr.letroll.githubbookmarkmanager.api
 
 import fr.letroll.githubbookmarkmanager.data.model.Repo
-import retrofit.Callback
 import retrofit.http.GET
+import retrofit.http.Headers
 import retrofit.http.Path
 import rx.Observable
-
-import retrofit.Callback
 
 /**
  * Created by letroll on 30/11/14.
@@ -18,17 +16,22 @@ Client Secret
 */
 
 public interface GitHubService{
+
+    Headers("Content-type: application/json")
     GET("/users/{user}/repos")
     fun listRepos(Path("user") user: String): Observable<List<Repo>>
 
+    Headers("Content-type: application/json")
     GET("/users/{user}/starred")
     fun listStarred(Path("user") user: String): Observable<List<Repo>>
 
+    Headers("Content-type: application/json")
     //    [POST("/authorizations")]
     //    fun getAuthorizations([Query("scopes")] scopes: Array<String>, [Query("note")] note: String,
     //                          [Query("note_url")] note_url: String,[Query("client_id")] client_id: String,
     //                          [Query("client_secret")] client_secret: String, result: Callback<String>)
 
+    Headers("Content-type: application/json")
     GET("/authorizations")
     fun getAuthorizations(): Observable<String>
 }
